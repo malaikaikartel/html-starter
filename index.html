@@ -2,27 +2,23 @@
 <html>
 <head>
     <title>Display Markdown</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/3.0.3/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-    <div id="markdown-content"></div>
-    <script>
-window.addEventListener("DOMContentLoaded", function () {
-    // Path to your .md file
-    const mdFilePath = "public/A1.md";
-    const markdownContentElement = document.getElementById("markdown-content");
+    <div id="markdown-content">
+        # Heading 1
+        ## Heading 2
+        *Italic Text*
+        **Bold Text**
+        - List Item 1
+        - List Item 2
+    </div>
 
-    fetch(mdFilePath)
-        .then(response => response.text())
-        .then(markdown => {
-            const htmlContent = marked(markdown);
-            markdownContentElement.innerHTML = htmlContent;
-        })
-        .catch(error => {
-            console.error("Error fetching the .md file:", error);
-            markdownContentElement.innerHTML = "Failed to load the .md file.";
-        });
-});
-</script>
+    <script>
+        const markdownContentElement = document.getElementById("markdown-content");
+        const markdownContent = markdownContentElement.textContent;
+        const htmlContent = marked(markdownContent);
+        markdownContentElement.innerHTML = htmlContent;
+    </script>
 </body>
 </html>
