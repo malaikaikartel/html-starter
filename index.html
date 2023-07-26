@@ -6,6 +6,23 @@
 </head>
 <body>
     <div id="markdown-content"></div>
-    <script src="display-markdown.js"></script>
+    <script>
+window.addEventListener("DOMContentLoaded", function () {
+    // Path to your .md file
+    const mdFilePath = "public/test.md";
+    const markdownContentElement = document.getElementById("markdown-content");
+
+    fetch(mdFilePath)
+        .then(response => response.text())
+        .then(markdown => {
+            const htmlContent = marked(markdown);
+            markdownContentElement.innerHTML = htmlContent;
+        })
+        .catch(error => {
+            console.error("Error fetching the .md file:", error);
+            markdownContentElement.innerHTML = "Failed to load the .md file.";
+        });
+});
+</script>
 </body>
 </html>
